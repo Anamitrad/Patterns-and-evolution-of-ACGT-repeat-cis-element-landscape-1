@@ -5,6 +5,7 @@ int main()
 {
 string genome;
 string motif;
+int found2=-1;
 cout<<"Enter the genome"<<endl;
 cin>>genome;
 //For storing the genome 1000 upstream of TATA
