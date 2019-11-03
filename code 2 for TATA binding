@@ -1,0 +1,82 @@
+#include<bits/stdc++.h>
+#include<iostream>
+using namespace std;
+int main()
+{
+string genome;
+string motif;
+cout<<"Enter the genome"<<endl;
+cin>>genome;
+//For storing the genome 1000 upstream of TATA
+map<int,string>mymap2;
+int upstreamcount=0;
+//For finding the sequence 1000 upstream of the TATA box
+do
+{
+    found2=genome.find("TATA",found2+1);
+    int sequence=found2-1000;
+    if(sequence>=0)
+    {
+        string seq;
+        for(int i=sequence;i<=sequence+1000;i++)
+        {
+           seq=seq+genome[i]; 
+        }
+        mymap2[upstreamcount]=seq;
+        upstreamcount++;
+    }
+}while(found2!=-1);
+for(auto it=mymap2.begin();it!=mymap2.end();it++)
+{
+    cout<<it->first;
+    cout<<"---------------->>>>";
+    cout<<it->second<<endl;
+}
+ while(1)
+    {
+    cout<<"Enter the number to get details of OR PRESS -1 TO EXIT"<<endl;
+    int Snumber;
+    cin>>Snumber;
+    if(Snumber==-1)
+    {
+        return 0;
+    }
+    string spacerdetail;
+    spacerdetail=mymap2[Snumber];
+    int l=spacerdetail.length();
+    int Acount=0;
+    int Tcount=0;
+    int Gcount=0;
+    int Ccount=0;
+    for(int i=0;i<l;i++)
+    {
+        char c=spacerdetail[i];
+        if(c=='A'||c=='a')
+        {
+            Acount++;
+        }
+        if(c=='T'||c=='t')
+        {
+            Tcount++;
+        }
+        if(c=='G'||c=='g')
+        {
+            Gcount++;
+        }
+        if(c=='C'||c=='c')
+        {
+            Ccount++;
+        }
+    }
+    float Aoccurence,Toccurence,Goccurence,Coccurence;
+    Aoccurence=((float)Acount/l);
+    Toccurence=((float)Tcount/l);
+    Goccurence=((float)Gcount/l);
+    Coccurence=((float)Ccount/l);
+    cout<<"Percent Occurence of A base in the spacer is "<<Aoccurence*100<<endl;
+    cout<<"Percent Occurence of T base in the spacer is "<<Toccurence*100<<endl;
+    cout<<"Percent Occurence of G base in the spacer is "<<Goccurence*100<<endl;
+    cout<<"Percent Occurence of C base in the spacer is "<<Coccurence*100<<endl;
+    }
+
+}
